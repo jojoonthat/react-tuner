@@ -1,4 +1,3 @@
-import './App.css';
 import React, { useState, useEffect } from 'react';
 import Tuner from './Tuner';
 
@@ -43,7 +42,7 @@ function App() {
       }
       const frequency = loudestIndex * (nyquist / bufferLength)
       setCurrentFrequency(frequency)
-      await sleep(50);
+      await sleep(100);
     }
   }
 

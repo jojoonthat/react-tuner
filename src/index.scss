@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+}
+
+body {
+    color: whitesmoke;
+    background-color: #99ad99;
+}
+
+.App {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    .tuner {
+        width: 70rem;
+        height: 100%;
+        &-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 0.2rem solid blanchedalmond;
+            border-radius: 0.5rem;
+            height: 30%;
+            margin-top: -5rem;
+            h1 {
+                font-family: "Quicksand", impact;
+                font-weight: 300;
+                font-size: 6rem;
+                sub {
+                    // font-family: "Quicksand", impact;
+                    // font-weight: 300;
+                    font-size: 5rem;
+                }
+            }
+        }
+        .frequency {
+            font-family: "Roboto", impact;
+            font-weight: 300;
+            font-size: 3rem;
+        }
+        .meter {
+            height: 70%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 20%;
+            .meter-container {
+                $container-height: 20rem;
+                $container-width: 40rem;
+                height: $container-height;
+                width: $container-width;
+                position: relative;
+                .stick {
+                    position: absolute;
+                    $stick-width: 1rem;
+                    width: $stick-width;
+                    height: 20rem;
+                    left: $container-width / 2 - $stick-width / 2;
+                    background-color: rgb(240, 197, 197);
+                    transform-origin: 50% 100%;
+                }
+                #circle {
+                    position: absolute;
+                    width: $container-width;
+                    height: $container-height; /* as the half of the width */
+                    background-color: #00ffff00;
+                    border: dashed;
+                    border-top-left-radius: 210px; /* 100px of height + 10px of border */
+                    border-top-right-radius: 210px; /* 100px of height + 10px of border */
+                    border: 6px solid rgba(252, 249, 246, 0.527);
+                    border-bottom: 0;
+                }
+            }
+            #high-text{
+                color: white;
+                font-size: 1.5rem;
+                font-family: "Roboto"
+            }
+            #low-text{
+                color: white;
+                font-size: 1.5rem;
+                font-family: "Roboto"
+            }
+        }
+    }
+}
