@@ -26,16 +26,19 @@ function Tuner({ frequency }) {
     (1200 * Math.log(frequency / standardFrequency)) /
     Math.log(2)
   );
-  const note = notesArray[nthNote % 12]
+  const note = notesArray[nthNote % 12];
+  const roundedFrequency = Math.round((frequency + Number.EPSILON) * 100) / 100;
 
   return (
     <div className='tuner'>
       <Meter cents={centDifference} />
       <div className='tuner-info'>
-        {isNaN(octave) ? <h1>Play something</h1> : <h1> {note} <sub>{octave}</sub></h1>}
-        <h2 className='frequency-cents'>{centDifference} Cents</h2>
-        <h2 className='frequency'>{frequency} Hz</h2>
-        
+        {isNaN(octave) ? <h1>Play something :)</h1> : <h1> {note} <sub>{octave}</sub></h1>}
+        {isNaN(centDifference) ? null : <h2 className='frequency-cents'>{centDifference} Cents</h2>}
+        {roundedFrequency === -1.46 ? null : <h2 className='frequency'>{roundedFrequency} Hz</h2>}
+
+
+
       </div>
     </div>
   );

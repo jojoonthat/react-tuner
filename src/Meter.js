@@ -1,8 +1,8 @@
 const Meter = (props => {
-    const isOnPitch = props.cents < 5 && props.cents > -5
+    const isOnPitch = props.cents < 15 && props.cents > -15
     const stickRotation = {
-        transform: `rotate(${props.cents * 1.8}deg)`,
-        backgroundColor: isOnPitch ? 'rgb(143, 188, 143)' : 'rgb(240, 197, 197)'
+        transform: `rotate(${props.cents}deg)`,
+        backgroundColor: isOnPitch ? 'rgb(144, 214, 155)' : 'rgb(252, 249, 246, 0.527)'
     }
     return (
         <div className='meter'>

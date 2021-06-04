@@ -29,7 +29,7 @@ function App() {
     const dataArray = new Float32Array(bufferLength);
     while (true) {
       analyser.getFloatFrequencyData(dataArray);
-      let loudest = -120;
+      let loudest = -70;
       let loudestIndex = -1;
       for (let i = 0; i < bufferLength; i++) {
         let currentLoudness = dataArray[i];
@@ -48,18 +48,22 @@ function App() {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  const calculateExpansion = () => {
-    return currentFrequency / 9990 + 1;
-  }
+
 
   const dotExpansion = {
-    transform: `scale(${calculateExpansion(currentFrequency)})`
+    transform: `scale(${currentFrequency / 2000 + 1})`
+  }
+
+  const dotExpansionEmphasis = {
+    transform: `scale(${currentFrequency / 1000 + 1})`
   }
 
 return (
   <div className="App">
     <span class="dot"></span>
     <span class="dot-tuning" style={dotExpansion}></span>
+    <span class="dot-tuning-more" style={dotExpansionEmphasis}></span>
+
     <Tuner frequency={currentFrequency} />
   </div>
 );
