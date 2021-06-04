@@ -7,7 +7,8 @@
 
 body {
   color: whitesmoke;
-  background-color: #99ad99;
+  background-color: white;
+  overflow: hidden;
 }
 
 .App {
@@ -15,6 +16,25 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
+}
+.App .dot {
+  height: 100rem;
+  width: 100rem;
+  background-color: salmon;
+  border-radius: 50%;
+  position: absolute;
+  z-index: -1;
+}
+.App .dot-tuning {
+  height: 100rem;
+  width: 110rem;
+  background-color: salmon;
+  opacity: 0.5;
+  border-radius: 50%;
+  position: absolute;
+  z-index: -1;
+  transition-duration: 1s;
+  transition-timing-function: ease;
 }
 .App .tuner {
   width: 70rem;
@@ -38,10 +58,15 @@ body {
 .App .tuner-info h1 sub {
   font-size: 5rem;
 }
+.App .tuner .frequency-cents {
+  font-family: "Roboto", impact;
+  font-weight: 300;
+  font-size: 4rem;
+}
 .App .tuner .frequency {
   font-family: "Roboto", impact;
   font-weight: 300;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 .App .tuner .meter {
   height: 70%;
@@ -57,11 +82,14 @@ body {
 }
 .App .tuner .meter .meter-container .stick {
   position: absolute;
-  width: 1rem;
+  width: 0.5rem;
   height: 20rem;
-  left: 19.5rem;
+  left: 19.75rem;
   background-color: #f0c5c5;
   transform-origin: 50% 100%;
+  transition: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
 }
 .App .tuner .meter .meter-container #circle {
   position: absolute;
@@ -71,9 +99,9 @@ body {
   background-color: #00ffff00;
   border: dashed;
   border-top-left-radius: 210px;
-  /* 100px of height + 10px of border */
+  /* px of height + 10px of border */
   border-top-right-radius: 210px;
-  /* 100px of height + 10px of border */
+  /* px of height + 10px of border */
   border: 6px solid rgba(252, 249, 246, 0.527);
   border-bottom: 0;
 }

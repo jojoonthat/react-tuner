@@ -32,8 +32,10 @@ function Tuner({ frequency }) {
     <div className='tuner'>
       <Meter cents={centDifference} />
       <div className='tuner-info'>
-        <h1> {note} <sub>{octave}</sub> and {centDifference} cents</h1>
+        {isNaN(octave) ? <h1>Play something</h1> : <h1> {note} <sub>{octave}</sub></h1>}
+        <h2 className='frequency-cents'>{centDifference} Cents</h2>
         <h2 className='frequency'>{frequency} Hz</h2>
+        
       </div>
     </div>
   );

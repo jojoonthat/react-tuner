@@ -9,13 +9,11 @@ function App() {
     if (!hasMicPerm) {
       navigator.mediaDevices.getUserMedia({ "audio": true })
         .then(rawStream => {
-          console.log('Got mic permission!')
           setHasMicPerm(true)
           processStream(rawStream)
         })
         .catch(err => {
-          // hasMicPerm should stay false
-          console.log(`Does not have mic permission: ${err.name}`)
+          alert(`Does not have mic permission: ${err.name}`)
         });
     }
   });
@@ -31,7 +29,7 @@ function App() {
     const dataArray = new Float32Array(bufferLength);
     while (true) {
       analyser.getFloatFrequencyData(dataArray);
-      let loudest = -Infinity;
+      let loudest = -120;
       let loudestIndex = -1;
       for (let i = 0; i < bufferLength; i++) {
         let currentLoudness = dataArray[i];
@@ -42,7 +40,7 @@ function App() {
       }
       const frequency = loudestIndex * (nyquist / bufferLength)
       setCurrentFrequency(frequency)
-      await sleep(100);
+      await sleep(10);
     }
   }
 
@@ -50,13 +48,21 @@ function App() {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  return (
-    <div className="App">
-      {/* Conditional jsx to display different things based on the value of hasMicPerm */}
-      {/* i.e. if hasMicPerm, show this, else show that */}
-      <Tuner frequency={currentFrequency} />
-    </div>
-  );
+  const calculateExpansion = () => {
+    return currentFrequency / 9990 + 1;
+  }
+
+  const dotExpansion = {
+    transform: `scale(${calculateExpansion(currentFrequency)})`
+  }
+
+return (
+  <div className="App">
+    <span class="dot"></span>
+    <span class="dot-tuning" style={dotExpansion}></span>
+    <Tuner frequency={currentFrequency} />
+  </div>
+);
 }
 
 export default App;
